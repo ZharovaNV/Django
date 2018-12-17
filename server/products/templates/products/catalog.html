@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+
+{%  block page_title %}
+Каталог
+{%  endblock %}
+
+{%  block page_content %}
+<ul>
+    {% for itm in books %}
+    <div class="catalogBook">
+        <h4>
+            <a href= {{ forloop.counter0 }}>{{ itm }}</a>
+        </h4>
+    </div>
+    {% endfor %}
+</ul>
+{%  endblock %}
