@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -5,19 +7,23 @@
         <title>
             {%  block page_title %}{%  endblock %}
         </title>
-        <link rel="stylesheet" href="css/style.css">
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
+        {% block page_styles %}
+            <!-- <link rel="stylesheet" href="{% static 'main/index.css' %}"> -->
+            <link rel="stylesheet" href="{% static 'main/style.css' %}">
+        {% endblock %}
     </head>
 
     <body>
         <div class="container">
             <header> 
-                <img class="logo" src="img/logo.jpg" alt="logo" title="logo">
+                <img class="logo" src="{% static 'main/img/logo.jpg' %}" alt="logo" title="logo">
                 <h1>ActuaryBooks</h1>
             
                 <ul class="menu">
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/catalog/">Каталог</a></li>
-                    <li><a href="/contacts/">Контакты</a></li>
+                    <li><a href="{%  url 'main:index' %}">Главная</a></li>
+                    <li><a href="{%  url 'products:index' %}">Каталог</a></li>
+                    <li><a href="{%  url 'main:contacts' %}">Контакты</a></li>
                 </ul>
                 <div class="clearfix"></div>
             </header>
