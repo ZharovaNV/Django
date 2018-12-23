@@ -1,22 +1,63 @@
 {% extends 'master.html' %}
+{%  load static %}
+
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'main/style.css' %}">
+{% endblock %}
 
 {%  block page_title %}
 {% if object %}
-{{ object }}
+{{ object.sname }}
 {% else %}
 Book does not exists
 {% endif %}
 {%  endblock %}
 
 {%  block page_content %}
-
 {% if object %}
+
+    <h2>  
+        {{ object.sname }}
+    </h2>
+    <h3>
+        {{ object.sauthor }}
+    </h3>
+    <h4 class="h4desc">
+    Описание книги
+    </h4>
+    <p id="shortdesc">
+        {{ object.sshortdescr }}
+    </p>
+    <h4 class="h4desc">
+    Характеристики книги
+    </h4>
+    <ul id="itemdesc">
+        <li><b>Возрастное ограничение:</b> {{ object.sagerestrict }}</li>
+        <li><b>ISBN:</b> {{ object.sisbn }}</li>
+        <li><b>Общее кол-во страниц:</b> {{ object.npagecnt }}</li>
+    </ul>
+    <h4 class="h4desc">
+    Подробное описание
+    </h4>
+    <p id="fulldesc">
+        {{ object.sfulldescr }}
+    </p>
+    <h4 class="h4desc">
+    Стоимость
+    </h4>
+    {{ object.nprice }}
+    <div class="clr"></div>
+{% else %}
+Book does not exists
+{% endif %}
+
+<!-- {% if object %}
 <h1>
-{{ object }}
+{{ object.sname }}
 </h1>
 
 {% else %}
 Book does not exists
-{% endif %}
+{% endif %} -->
 
 {%  endblock %}

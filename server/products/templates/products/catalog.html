@@ -1,17 +1,49 @@
 {% extends 'master.html' %}
+{%  load static %}
 
 {%  block page_title %}
 Каталог
 {%  endblock %}
 
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'main/style.css' %}">
+{% endblock %}
+
 {%  block page_content %}
-<ul>
+<h2>
+    Каталог
+</h2>
+
+{% for itm in books %}
+<div class="blockcatalog">
+    <!-- <a href="book1.html"><img class="imgcatalog" src="img/imgbook1.png" alt="David C.M. Dockon, Mary R. Hardy and Howard R. Waters Actuarial mathematics for life contingent risks" title="David C.M. Dockon, Mary R. Hardy and Howard R. Waters"></a> -->
+
+
+   <div class="catalogBook">
+       <h4>{{ itm.sauthor }}
+           <br>
+           {{ itm.sname }}
+       </h4>
+       <a href="{% url 'products:book' pk=itm.id %}">Описание</a>
+   </div>
+   <div class="catalogbuy">
+       В наличии 
+       <br>
+       Доставка на завтра
+       <br>
+       <input type="button" value="Купить">
+   </div>
+   <div class="clearfix"></div>
+</div>
+{% endfor %}
+<!-- <ul>
     {% for itm in books %}
     <div class="catalogBook">
         <h4>
-            <a href= {{ forloop.counter0 }}>{{ itm }}</a>
+            <a href= "{% url 'products:book' pk=itm.id %}">{{ itm.sauthor }}</a>
         </h4>
+
     </div>
     {% endfor %}
-</ul>
+</ul> -->
 {%  endblock %}

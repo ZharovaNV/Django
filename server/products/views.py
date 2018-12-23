@@ -1,30 +1,47 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import (
+    render, get_list_or_404, get_object_or_404
+)
 
-# Create your views here.
+from .models import Book
 
 def catalog_view(request):
-    with open('data.json', 'r') as file:
-        context = json.load(file)
+    # with open('data.json', 'r') as file:
+    #     context = json.load(file)
 
+    # return render(
+    #     request, 
+    #     'products/catalog.html',
+    #     {
+    #         'books': context.get('books') or []
+    #     }
+    # )
     return render(
-        request, 
+        request,
         'products/catalog.html',
         {
-            'books': context.get('books') or []
+            'books': get_list_or_404(Book)
         }
     )
 
 def book_view(request, pk):
-    with open('data.json', 'r') as file:
-        context = json.load(file)
+    # with open('data.json', 'r') as file:
+    #     context = json.load(file)
 
-    books = context.get('books')
+    # books = context.get('books')
 
+    # return render(
+    #     request, 
+    #     'products/book.html',
+    #     {
+    #         'object': books[pk] if len(books) > pk else ''
+    #     }
+    # )
     return render(
-        request, 
+        request,
         'products/book.html',
         {
-            'object': books[pk] if len(books) > pk else ''
+            'object': get_object_or_404(Book, id=pk)
         }
     )
+
