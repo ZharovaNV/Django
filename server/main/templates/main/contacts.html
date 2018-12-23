@@ -1,0 +1,41 @@
+﻿{% extends 'master.html' %}
+
+{%  block page_title %}
+Контакты
+{%  endblock %}
+
+{%  block page_content %}
+<h3>
+    Напишите нам
+</h3>
+
+<form>
+    <fieldset>
+        <legend>Обратная связь</legend>
+
+        <select>
+            <option disabled selected>Выберите повод к обращению</option>
+            <option value="Не нашли нужную книгу">Не нашли нужную книгу</option>
+            <option value="Вопрос по доставке">Вопрос по доставке</option>
+            <option value="Жалобы и предложения">Жалобы и предложения</option>
+        </select><br>
+
+        <input type="text" placeholder="Ваше Имя"><br>
+        <input class="email" type="text" placeholder="Email"><br>        
+        <input type="text" placeholder="Тема"><br>
+
+        <textarea rows=6 cols=150> </textarea><br>
+        <input type="button" value="Отправить"><br>
+    </fieldset> 
+</form>
+
+
+<h3>
+    Наши контакты
+</h3>
+<p>
+    <b>8 (499) 123-45-67</b>  c 9 до 21, ежедневно <br>
+    Россия, Москва, **************, * <br>
+    ActuaryBooks@yandex.ru <br>
+</p>
+{%  endblock %}
