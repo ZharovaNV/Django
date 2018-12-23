@@ -16,7 +16,7 @@
 
 {% for itm in books %}
 <div class="blockcatalog">
-    <!-- <a href="book1.html"><img class="imgcatalog" src="img/imgbook1.png" alt="David C.M. Dockon, Mary R. Hardy and Howard R. Waters Actuarial mathematics for life contingent risks" title="David C.M. Dockon, Mary R. Hardy and Howard R. Waters"></a> -->
+    <a href="{% url 'products:book' pk=itm.id %}"><img class="imgcatalog" src="/media/{{ itm.image }}" alt="{{ itm.sauthor }}"></a>
 
 
    <div class="catalogBook">
