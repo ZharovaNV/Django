@@ -16,7 +16,7 @@
 
 {% for itm in books %}
 <div class="blockcatalog">
-    <a href="{% url 'products:book' pk=itm.id %}"><img class="imgcatalog" src="/media/{{ itm.image }}" alt="{{ itm.sauthor }}"></a>
+    <a href="{% url 'products:book' pk=itm.id %}"><img class="imgcatalog" src="../{{ itm.image.value.url }}" alt="{{ itm.sauthor }}"></a>
 
 
    <div class="catalogBook">

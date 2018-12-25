@@ -9,7 +9,7 @@ html, body {
 }
 header{
     /* background: url(../img/book_back.jpg); */  
-    background: url(/main/img/book_back.jpg);
+    /*background: url(/main/img/book_back.jpg);*/
     min-height: 15%;
     padding: 20px;
 }
