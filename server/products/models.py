@@ -1,17 +1,17 @@
 from django.db import models
+from utility.models import DateTimeManager
 from .utils import get_default_category
 
-class Category(models.Model):
+class Category(DateTimeManager, models.Model):
     sname = models.CharField(max_length=250)
     sdescription = models.TextField(null = True, blank = True)
-    modified = models.DateTimeField (auto_now = True)
-    created = models.DateTimeField(auto_now_add = True)
+
 
 
 def __str__(self):
     return self.name
 
-class Book(models.Model):
+class Book(DateTimeManager, models.Model):
     sname = models.CharField(max_length=250)
     sauthor = models.CharField(max_length=250)
     category = models.ForeignKey(Category, on_delete = models.CASCADE, default = get_default_category)
@@ -23,12 +23,11 @@ class Book(models.Model):
     sagerestrict = models.CharField(max_length=3)
     sisbn =  models.CharField(max_length=30)
     npagecnt = models.DecimalField(max_digits=6, decimal_places=0)
-    modified = models.DateTimeField (auto_now = True)
-    created = models.DateTimeField(auto_now_add = True)
 
-@property
-def is_modified (self):
-    return self.is_modified != self.created
 
-def __str__(self):
-    return self.name
+    @property
+    def is_modified (self):
+        return self.is_modified != self.created
+
+    def __str__(self):
+        return self.sname
