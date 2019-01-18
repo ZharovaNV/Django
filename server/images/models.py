@@ -1,6 +1,7 @@
 from django.db import models
+from utility.models import DateTimeManager
 
-class Image(models.Model):
+class Image(DateTimeManager, models.Model):
     name = models.CharField(
         max_length=150
     )
@@ -8,9 +9,9 @@ class Image(models.Model):
         upload_to='images'
     )
 
-@property
-def url(self):
-    return self.value.url
+    @property
+    def url(self):
+        return self.value.url
 
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name

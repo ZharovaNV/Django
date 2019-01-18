@@ -1,7 +1,21 @@
 from django import forms
+from .models import Accountuser
 
 
-class LoginForm(forms.Form):
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = Accountuser
+        fields = ['username', 'password']
+        widgets = {
+            'password': forms.widgets.PasswordInput(
+                attrs={
+                    'class': 'field field-password'
+                }
+            )
+        }
+
+
+class  DefaultLoginForm(forms.Form):
     username = forms.CharField(
         label='login',
         max_length=150,

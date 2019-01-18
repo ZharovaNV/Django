@@ -1,0 +1,15 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block page_title %}
+Create new Book
+{% endblock %}
+
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'main/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    {% include 'components/form.html' with form=form %}
+{% endblock %}
