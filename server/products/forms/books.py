@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Book
+from products.models import Book
 
 
 class BookForm(forms.ModelForm):

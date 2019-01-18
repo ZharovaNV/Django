@@ -109,6 +109,22 @@ h3 {
     border-radius: 25px;
     padding: 0px 8px; 
 }
+#category-list {
+    float: right;
+    color: #007800; 
+}
+#category-list li {
+    color: #007800; 
+}
+#category-list li a {
+    color: #00c026;  
+    text-decoration: none;
+    padding: 0px 10px; 
+}
+.categlist {
+    color: #00c026;  
+    font-size: 18px;
+}
 .h4desc {
     color: #000000;
     font-size: 18px;

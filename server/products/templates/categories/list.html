@@ -1,0 +1,22 @@
+{% extends 'master.html' %}
+{%  load static %}
+
+{% block page_title %}
+Categories list
+{% endblock %}
+
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'main/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+<ul class="categories-list">
+    {% for itm in object_list %}
+    <li class="categories-list__item">
+        <a class="categories-list__item-link" href="{% url 'categories:detail' pk=itm.id %}">
+            {{ itm.sname }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

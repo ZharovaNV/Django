@@ -1,0 +1,27 @@
+{% extends 'master.html' %}
+{%  load static %}
+
+{% block page_title %}
+{{ object }}
+{% endblock %}
+
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'main/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    {% if object %}
+        <h2 class="object__name">
+            {{ object.sname }}
+        </h2>
+        <h3 class="object__description">
+            {{ object.sdescription }}
+        </h3>
+        {% for itm in books %}
+        {% include 'components/catalog_book.html' with sname=itm.sname sauthor=itm.sauthor url=itm.image.url cost=itm.cost id=itm.id %}
+        {% endfor %}
+
+    {% else %}
+        Category does not exists
+    {% endif %}
+{% endblock %}

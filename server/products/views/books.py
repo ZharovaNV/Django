@@ -10,8 +10,8 @@ from django.views.generic import (
 )
 
 
-from .models import Book
-from .forms import BookForm
+from products.models import Book
+from products.forms import BookForm
 
 
 class BookCreateView(CreateView):
@@ -26,6 +26,24 @@ class BookUpdateView(UpdateView):
     fields = fields = ['sname', 'sauthor', 'category', 'image', 'nprice', 'ncnt', 'sshortdescr', 'sfulldescr', 'sagerestrict', 'sisbn', 'npagecnt']
     template_name = 'products/update.html'
     success_url = reverse_lazy('products:index')
+
+
+class BookDeleteView(DeleteView):
+    model = Book
+    template_name = 'products/delete.html'
+    success_url = reverse_lazy('products:index')
+
+
+class BookListView(ListView):
+    model = Book
+    context_object_name = 'books'
+    template_name = 'products/catalog.html'
+
+
+class BookDetailView(DetailView):
+    model = Book
+    template_name = 'products/book.html'
+
 
 
 def book_create_view(request):
