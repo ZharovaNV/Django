@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -9,7 +10,6 @@
         </title>
         <!-- <link rel="stylesheet" href="css/style.css"> -->
         {% block page_styles %}
-            <!-- <link rel="stylesheet" href="{% static 'main/index.css' %}"> -->
             <link rel="stylesheet" href="{% static 'main/style.css' %}">
         {% endblock %}
     </head>
@@ -26,10 +26,17 @@
                     <li><a href="{%  url 'main:contacts' %}">Контакты</a></li>
                     <li><a href="{%  url 'accounts:login' %}">Личный кабинет</a></li>
                 </ul>
+
+                
+
+                
+
                 <div class="clearfix"></div>
             </header>
 
             <div class="content">
+
+                <ul id="category-list"></ul>
             
                 <section>
                     {%  block page_content %}{%  endblock %}
@@ -43,6 +50,32 @@
         <footer>
             <div class="clcopyright"> &copy; Все права защищены</div>
         </footer> 
+
+        <script>
+            const renderCategories = ({id, sname}) => (
+                `
+                <li class="categlist">
+                    <a href="/categories/${id}" class="category-list__item-link">${sname}</a>
+                </li>
+                `
+            )
+        </script>
+            
+        <script>
+            const categoryList = document.querySelector('#category-list');
+            const categoryUrl = '{% url "rest_categories:list" %}';
+        
+            fetch(categoryUrl)
+                .then(response => response.json())
+                .then(
+                    data => {
+                        data.results.map(
+                            itm => categoryList.innerHTML += renderCategories(itm)
+                        )
+                    }
+                )
+        </script>
+            
         
     </body>
 

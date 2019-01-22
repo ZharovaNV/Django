@@ -6,10 +6,8 @@ class Category(DateTimeManager, models.Model):
     sname = models.CharField(max_length=250)
     sdescription = models.TextField(null = True, blank = True)
 
-
-
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.sname
 
 class Book(DateTimeManager, models.Model):
     sname = models.CharField(max_length=250)

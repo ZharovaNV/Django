@@ -1,0 +1,19 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block page_title %}
+Delete {{ object.sname }}
+{% endblock %}
+
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'main/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+<form method="POST">
+    {% csrf_token %}
+    <h3>Вы уверены, что необходимо удалить {{ object.sname }}?</h3>
+    <input type="submit">
+</form>
+{% endblock %}
