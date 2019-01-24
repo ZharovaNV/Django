@@ -17,14 +17,22 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework.routers import DefaultRouter
 
-router = [
+from products.viewsets import BookViewSet
+
+django_router = [
     path('categories/', include('products.routes.categories')),
     path('books/', include('products.routes')),
 ]
 
+
+router = DefaultRouter()
+router.register('products', BookViewSet)
+
 urlpatterns = [
-    path('api/', include(router)),
+    path('api/', include(router.urls)),
+    path('django_api/', include(django_router)),
     path('admin/', admin.site.urls),
     path('catalog/', include('products.urls')),
     path('categories/', include('products.urls.categories')),

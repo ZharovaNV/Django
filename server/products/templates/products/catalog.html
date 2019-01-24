@@ -46,7 +46,7 @@
                         itm => bookCatalog.innerHTML += renderBook(itm)
                     )
                     if (data.next_url) {
-                        bookUrl = data.next_url
+                        bookUrl = data.next
                     } else {
                         showMoreButton.classList.add('showmorebuttonhidden')
                     }
