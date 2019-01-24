@@ -125,6 +125,10 @@ h3 {
     color: #00c026;  
     font-size: 18px;
 }
+
+.showmorebuttonhidden {
+    display: none;
+}
 .h4desc {
     color: #000000;
     font-size: 18px;

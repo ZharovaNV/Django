@@ -14,8 +14,48 @@
     Каталог
 </h2>
 
+{% include 'components/pagination.html' with page=page_obj paginator=paginator %}
+
+<div class="blockcatalog">
 {% for itm in books %}
 {% include 'components/catalog_book.html' with sname=itm.sname sauthor=itm.sauthor url=itm.image.url cost=itm.cost id=itm.id %}
 {% endfor %}
+</div>
+
+{% include 'components/pagination.html' with page=page_obj paginator=paginator %}
+
+{% if page_obj.has_next %}
+<button class="showmorebutton">
+    Показать еще
+</button>
+{% endif %}
+
+<script src="{%  static 'main/products.js' %}"></script>
+
+<script>
+    const bookCatalog = document.querySelector('.blockcatalog');
+    const showMoreButton = document.querySelector('.showmorebutton');
+    let bookUrl = '{% url "rest_books:catalog" %}?page={% if page_obj.has_next %}{{ page_obj.next_page_number }}{% endif %}';
+
+    const ShowMore = () => {
+        fetch(bookUrl)
+            .then(response => response.json())
+            .then(
+                data => {
+                    data.results.map(
+                        itm => bookCatalog.innerHTML += renderBook(itm)
+                    )
+                    if (data.next_url) {
+                        bookUrl = data.next_url
+                    } else {
+                        showMoreButton.classList.add('showmorebuttonhidden')
+                    }
+                }
+            )      
+    }
+
+    showMoreButton.addEventListener('click', ShowMore)
+</script>
+
 
 {%  endblock %}
