@@ -1,6 +1,6 @@
-const renderBook = ({id, image, sauthor, sname}) => (
+const renderBook = ({id, url, sauthor, sname}) => (
     `
-    <a href="/catalog/${id}/"><img class="imgcatalog" src="${image}" alt="${sauthor}"></a>
+    <a href="/catalog/${id}/"><img class="imgcatalog" src="${url}" alt="${sauthor}"></a>
 
 
     <div class="catalogBook">

@@ -15,9 +15,7 @@ from products.forms import BookForm
 
 from django.core.paginator import Paginator
 from django.http import JsonResponse
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin, UserPassesTestMixin
-)
+
 
 class BookJsonListView(ListView):
     model = Book
@@ -70,33 +68,24 @@ class BookJsonListView(ListView):
     def render_to_response(self, context, **response_kwargs):
         return JsonResponse(context)
 
-class BookCreateView(LoginRequiredMixin, CreateView):
+class BookCreateView(CreateView):
     model = Book
     fields = ['sname', 'sauthor', 'category', 'image', 'nprice', 'ncnt', 'sshortdescr', 'sfulldescr', 'sagerestrict', 'sisbn', 'npagecnt']
     template_name = 'products/create.html'
     success_url = reverse_lazy('products:index')
-    login_url = reverse_lazy('accounts:login')
 
 
-class BookUpdateView(UserPassesTestMixin, UpdateView):
+class BookUpdateView(UpdateView):
     model = Book
     fields = fields = ['sname', 'sauthor', 'category', 'image', 'nprice', 'ncnt', 'sshortdescr', 'sfulldescr', 'sagerestrict', 'sisbn', 'npagecnt']
     template_name = 'products/update.html'
     success_url = reverse_lazy('products:index')
-    login_url = reverse_lazy('accounts:login')
-
-    def test_func(self):
-        return self.request.user.is_superuser
 
 
-class BookDeleteView(UserPassesTestMixin, DeleteView):
+class BookDeleteView(DeleteView):
     model = Book
     template_name = 'products/delete.html'
     success_url = reverse_lazy('products:index')
-    login_url = reverse_lazy('accounts:login')
-
-    def test_func(self):
-        return self.request.user.is_superuser
 
 
 class BookListView(ListView):
@@ -109,9 +98,6 @@ class BookListView(ListView):
 class BookDetailView(DetailView):
     model = Book
     template_name = 'products/book.html'
-    
-
-    
 
 
 
